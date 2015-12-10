@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22420868}
+  - 114: {fileID: 11411656}
   m_Layer: 0
   m_Name: InventoryItemView
   m_TagString: InventoryObject
@@ -15,6 +16,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &11411656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891bd7520c511f64191bd4011381c07d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &22420868
 RectTransform:
   m_ObjectHideFlags: 1

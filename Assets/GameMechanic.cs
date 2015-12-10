@@ -81,37 +81,40 @@ public class GameMechanic : MonoBehaviour
 
   public void SaveInventory(FileStream stream)
   {
-    Inventory inventory = StoreInventory("InventoryObject");
+    var inventory = StoreInventory("InventoryObject");
     Save(stream, inventory);
   }
 
-  Inventory StoreInventory(string tag)
+  Data.Inventory StoreInventory(string tag)
   {
-    var inventory = new Inventory();
+    var inventory = new Data.Inventory();
     foreach (var item in GameObject.FindGameObjectsWithTag(tag))
     {
-      inventory.InventoryObjects.Add(new InventoryObject(item.name, 1));
+      var counter = item.GetComponent<ItemCounter>();
+      inventory.InventoryObjects.Add(new InventoryObject(item.name, counter.Count));
     }
     return inventory;
   }
 
-  void RepairInventory(Inventory inventory)
+  void RepairInventory(Data.Inventory inventory)
   {
-    foreach (var item in inventory.InventoryObjects)
+    for (int i = 0; i < inventory.InventoryObjects.Count; ++i )
     {
+      var item = inventory.InventoryObjects[i];
       var pref = Resources.Load<GameObject>(item.Name);
       if (pref != null)
       {
         var itemView = Instantiate<GameObject>(pref);
-        var inventoryView = GameObject.Find("InventoryView");
-        itemView.transform.SetParent(inventoryView.transform);
+        itemView.GetComponent<ItemCounter>().Count = item.Count;
+        var slot = GameObject.Find("InventoryView").transform.GetChild(i);
+        itemView.transform.SetParent(slot.transform);
       }
     }
   }
 
   void LoadInventory(FileStream stream)
   {
-    Inventory inventory = Load(stream) as Inventory;
+    var inventory = Load(stream) as Data.Inventory;
     RepairInventory(inventory);
   }
 }
