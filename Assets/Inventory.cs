@@ -56,6 +56,7 @@ public class Inventory : MonoBehaviour
     if (pref != null)
     {
       var item = Instantiate<GameObject>(pref);
+      item.name = name;
       item.GetComponent<ItemCounter>().Count = count;
       return item;
     }
