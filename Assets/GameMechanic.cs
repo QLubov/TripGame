@@ -15,11 +15,21 @@ public class GameMechanic : MonoBehaviour
     }
     using (var fs = new FileStream(sceneName, FileMode.Open))
     {
+      ClearObjectsByTag("SceneObject");
       LoadScene(fs);
     }
     using (var fs = new FileStream("inventory.dat", FileMode.OpenOrCreate))
     {
+      ClearObjectsByTag("InventoryObject");
       LoadInventory(fs);
+    }
+  }
+
+  void ClearObjectsByTag(string tag)
+  {
+    foreach (var obj in GameObject.FindGameObjectsWithTag(tag))
+    {
+      DestroyImmediate(obj);
     }
   }
 
@@ -64,7 +74,7 @@ public class GameMechanic : MonoBehaviour
       var pref = Resources.Load<GameObject>(so.Name);
       if (pref != null)
       { 
-        Instantiate<GameObject>(pref).transform.SetParent(GameObject.Find("Canvas").transform);
+        Instantiate<GameObject>(pref).transform.SetParent(GameObject.Find("GameScene").transform);
       }
     }
   }
@@ -98,17 +108,10 @@ public class GameMechanic : MonoBehaviour
 
   void RepairInventory(Data.Inventory inventory)
   {
-    for (int i = 0; i < inventory.InventoryObjects.Count; ++i )
+    foreach (var item in inventory.InventoryObjects )
     {
-      var item = inventory.InventoryObjects[i];
-      var pref = Resources.Load<GameObject>(item.Name);
-      if (pref != null)
-      {
-        var itemView = Instantiate<GameObject>(pref);
-        itemView.GetComponent<ItemCounter>().Count = item.Count;
-        var slot = GameObject.Find("InventoryView").transform.GetChild(i);
-        itemView.transform.SetParent(slot.transform);
-      }
+      var invView = GameObject.Find("InventoryView").GetComponent<Inventory>();
+      invView.AddItem(item.Name, item.Count);
     }
   }
 
