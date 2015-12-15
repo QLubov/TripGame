@@ -75,7 +75,7 @@ public class GameMechanic : MonoBehaviour
       if (pref != null)
       {
         var sceneObject = Instantiate<GameObject>(pref);
-        sceneObject.transform.SetParent(GameObject.Find("GameScene").transform);
+        sceneObject.transform.SetParent(GameObject.Find("GameScene").transform, false);
         sceneObject.name = so.Name;
       }
     }
