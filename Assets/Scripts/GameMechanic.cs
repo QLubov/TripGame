@@ -5,24 +5,60 @@ using Data;
 
 public class GameMechanic : MonoBehaviour
 {
+  public static string SceneObjectTag = "SceneObject";
+  public static string GameSceneTag = "GameScene";
+  public static string InventoryObjectTag = "InventoryObject";
+  public static string InventoryViewTag = "InventoryView";
+
   // Use this for initialization
   void Start()
   {
-    string sceneName = Application.loadedLevelName + ".dat";
-    if (!File.Exists(sceneName))
+    try
     {
-      return;
+      Input.multiTouchEnabled = false;
+
+      string path = GetScenePath();
+
+      AddLog(path);
+
+      if (!File.Exists(@path))
+      {
+        AddLog("Scene file doesn't exist");
+        return;
+      }
+      using (var fs = new FileStream(@path, FileMode.Open))
+      {
+        AddLog("Loading Scene... ");
+
+        ClearObjectsByTag(SceneObjectTag);
+        LoadScene(fs);
+
+        AddLog(string.Format("Scene {0} successfully loaded ", path));
+      }
+      using (var fs = new FileStream(@GetInventoryPath(), FileMode.OpenOrCreate))
+      {
+        AddLog("Loading inventory... ");
+
+        ClearObjectsByTag(InventoryObjectTag);
+        LoadInventory(fs);
+
+        AddLog("Inventory successfully loaded");
+      }
     }
-    using (var fs = new FileStream(sceneName, FileMode.Open))
+    catch (System.Exception e)
     {
-      ClearObjectsByTag("SceneObject");
-      LoadScene(fs);
+      AddLog(e.Message);
     }
-    using (var fs = new FileStream("inventory.dat", FileMode.OpenOrCreate))
-    {
-      ClearObjectsByTag("InventoryObject");
-      LoadInventory(fs);
-    }
+  }
+
+  private static string GetScenePath()
+  {
+    return Application.persistentDataPath + "/" + Application.loadedLevelName;
+  }
+
+  private static string GetInventoryPath()
+  {
+    return Application.persistentDataPath + "/inventory";
   }
 
   void ClearObjectsByTag(string tag)
@@ -36,10 +72,10 @@ public class GameMechanic : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (Input.GetButtonDown("Space"))
+    if (Input.GetKeyDown(KeyCode.Escape))
     {
-      SaveScene(new FileStream(Application.loadedLevelName + ".dat", FileMode.Create));
-      SaveInventory(new FileStream("inventory.dat", FileMode.Create));
+      // Implement YES/NO message
+      Application.Quit();
     }
   }
 
@@ -57,8 +93,8 @@ public class GameMechanic : MonoBehaviour
 
   public void SaveScene(FileStream stream)
   {
-    var scene = StoreScene("SceneObject");
-    Save(stream, scene);    
+    var scene = StoreScene(SceneObjectTag);
+    Save(stream, scene);
   }
 
   void LoadScene(FileStream stream)
@@ -75,7 +111,8 @@ public class GameMechanic : MonoBehaviour
       if (pref != null)
       {
         var sceneObject = Instantiate<GameObject>(pref);
-        sceneObject.transform.SetParent(GameObject.Find("GameScene").transform, false);
+        sceneObject.transform.SetParent(GameObject.FindGameObjectWithTag(GameSceneTag).transform, false);
+        sceneObject.transform.position = so.Position;
         sceneObject.name = so.Name;
       }
     }
@@ -93,7 +130,7 @@ public class GameMechanic : MonoBehaviour
 
   public void SaveInventory(FileStream stream)
   {
-    var inventory = StoreInventory("InventoryObject");
+    var inventory = StoreInventory(InventoryObjectTag);
     Save(stream, inventory);
   }
 
@@ -110,9 +147,9 @@ public class GameMechanic : MonoBehaviour
 
   void RepairInventory(Data.Inventory inventory)
   {
-    foreach (var item in inventory.InventoryObjects )
+    foreach (var item in inventory.InventoryObjects)
     {
-      var invView = GameObject.Find("InventoryView").GetComponent<Inventory>();
+      var invView = GameObject.FindGameObjectWithTag(InventoryViewTag).GetComponent<Inventory>();
       invView.AddItem(item.Name, item.Count);
     }
   }
@@ -121,5 +158,34 @@ public class GameMechanic : MonoBehaviour
   {
     var inventory = Load(stream) as Data.Inventory;
     RepairInventory(inventory);
+  }
+
+  public void OnSave()
+  {
+    AddLog("Path is " + Application.persistentDataPath);
+    try
+    {
+      SaveScene(new FileStream(GetScenePath(), FileMode.Create));
+      SaveInventory(new FileStream(GetInventoryPath(), FileMode.Create));
+    }
+    catch (System.Exception e)
+    {
+      AddLog(e.Message);
+    }
+  }
+
+  public void OnClean()
+  {
+    string inventoryPath = GetInventoryPath();
+    string scenePath = GetScenePath();
+    if (File.Exists(@inventoryPath))
+      File.Delete(@inventoryPath);
+    if (File.Exists(@scenePath))
+      File.Delete(@scenePath);
+  }
+
+  public static void AddLog(string message)
+  {
+    GameObject.Find("DebugConsole").GetComponent<UnityEngine.UI.Text>().text += message + "\n";
   }
 }

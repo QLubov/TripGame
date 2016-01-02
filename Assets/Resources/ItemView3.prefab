@@ -33,7 +33,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .529859066, g: .516219735, b: .911764681, a: 1}
+  m_Color: {r: .294063538, g: .297664315, b: .816176474, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891bd7520c511f64191bd4011381c07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Count: 2
 --- !u!114 &11466232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,15 +189,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Color.r
-      value: .529859066
+      value: .294063538
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.g
-      value: .516219735
+      value: .297664315
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.b
-      value: .911764681
+      value: .816176474
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

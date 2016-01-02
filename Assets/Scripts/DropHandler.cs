@@ -10,7 +10,7 @@ public class DropHandler : MonoBehaviour
     var data = eventData as PointerEventData;
     Debug.Log(data.pointerDrag.name);
 
-    GameObject.Find("InventoryView").GetComponent<Inventory>().RemoveItem(data.pointerDrag.name);
+    FindObjectOfType<Inventory>().RemoveItem(data.pointerDrag.name);
   }
 
   // Use this for initialization

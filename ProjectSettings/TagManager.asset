@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SceneObject
   - InventoryObject
+  - GameScene
+  - InventoryView
   layers:
   - Default
   - TransparentFX

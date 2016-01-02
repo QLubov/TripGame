@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     if (item == null)
       throw new System.InvalidOperationException(string.Format("Item {0} not found in DataBase", name));
 
-    item.transform.SetParent(slot.transform, false);
+    slot.SetItem(item); //.transform.SetParent(slot.transform, false);
   }
 
   ItemCounter FindItemCounter(string name)
@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
 
   GameObject FindItem(string name)
   {
-    foreach (var item in GameObject.FindGameObjectsWithTag("InventoryObject"))
+    foreach (var item in GameObject.FindGameObjectsWithTag(GameMechanic.InventoryObjectTag))
     {
       if (item.name == name)
         return item;
@@ -39,13 +39,13 @@ public class Inventory : MonoBehaviour
     return null;
   }
 
-  GameObject FindEmptySlot()
+  Slot FindEmptySlot()
   {
     for (int i = 0; i < transform.childCount; ++i)
     {
-      var slot = transform.GetChild(i);
-      if (slot.childCount == 0)
-        return slot.gameObject;
+      var slot = transform.GetChild(i).GetComponent<Slot>();
+      if (slot.IsEmpty())
+        return slot;
     }
     return null;
   }
@@ -63,13 +63,24 @@ public class Inventory : MonoBehaviour
     return null;
   }
 
-  public void RemoveItem(string name)
+  public void RemoveItem(string name, bool all = true)
   {
     var item = FindItem(name);
     if (item != null)
-      Destroy(item);
+    {
+      if (all)
+        Destroy(item);
+      else
+      {
+        var counter = item.GetComponent<ItemCounter>();
+        if (counter.Count > 1)
+          counter.Count--;
+        else
+          Destroy(item);
+      }
+    }      
   }
-
+  
 	// Use this for initialization
 	void Start () {
 	
@@ -86,13 +97,13 @@ public class Inventory : MonoBehaviour
     int index = -1;
     for (int i = 0; i < transform.childCount; ++i)
     {
-      var currentSlot = transform.GetChild(i);
-      if (currentSlot.childCount == 0)
+      var currentSlot = transform.GetChild(i).GetComponent<Slot>();
+      if (currentSlot.IsEmpty())
         index = i;
       else if (index >= 0)
       {
         //set new parent for item. Item == GetChild(0)
-        currentSlot.GetChild(0).SetParent(transform.GetChild(index), false);
+        transform.GetChild(index).GetComponent<Slot>().SetItem(currentSlot.transform.GetChild(0).gameObject);
         i = index;
       }
     }
