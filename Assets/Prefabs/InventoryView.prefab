@@ -48,6 +48,7 @@ GameObject:
   - 224: {fileID: 22463160}
   - 222: {fileID: 22216882}
   - 114: {fileID: 11486308}
+  - 114: {fileID: 11483318}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -84,6 +85,7 @@ GameObject:
   - 224: {fileID: 22491880}
   - 222: {fileID: 22276518}
   - 114: {fileID: 11453694}
+  - 114: {fileID: 11453164}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -120,6 +122,7 @@ GameObject:
   - 224: {fileID: 22420726}
   - 222: {fileID: 22285408}
   - 114: {fileID: 11435300}
+  - 114: {fileID: 11466048}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -137,6 +140,7 @@ GameObject:
   - 224: {fileID: 22498546}
   - 222: {fileID: 22211372}
   - 114: {fileID: 11435916}
+  - 114: {fileID: 11428018}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -173,6 +177,7 @@ GameObject:
   - 224: {fileID: 22477502}
   - 222: {fileID: 22272188}
   - 114: {fileID: 11434182}
+  - 114: {fileID: 11486010}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -311,6 +316,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11428018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7552724dcb6a6c548a3e07ce1cfc5752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11434182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -342,7 +358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 
 --- !u!114 &11435300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,7 +390,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 
 --- !u!114 &11435916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,7 +422,18 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 
+--- !u!114 &11453164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7552724dcb6a6c548a3e07ce1cfc5752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11453694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -438,7 +465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 
 --- !u!114 &11455220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -477,6 +504,17 @@ MonoBehaviour:
   m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
+--- !u!114 &11466048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7552724dcb6a6c548a3e07ce1cfc5752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11466348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,6 +654,28 @@ MonoBehaviour:
   m_PreferredHeight: 25
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+--- !u!114 &11483318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7552724dcb6a6c548a3e07ce1cfc5752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11486010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7552724dcb6a6c548a3e07ce1cfc5752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11486308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -647,7 +707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 
 --- !u!114 &11494146
 MonoBehaviour:
   m_ObjectHideFlags: 1

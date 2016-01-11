@@ -19,6 +19,12 @@ public class CountLabel : MonoBehaviour {
     if (mSlot.IsEmpty())
       mText.text = "";
     else
-      mText.text = mSlot.GetItemCount().ToString();
+    {
+      uint count = mSlot.GetItemCount();
+      if (count > 1)
+        mText.text = mSlot.GetItemCount().ToString();
+      else
+        mText.text = "";
+    }
 	}
 }

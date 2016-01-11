@@ -149,7 +149,7 @@ public class GameMechanic : MonoBehaviour
   {
     foreach (var item in inventory.InventoryObjects)
     {
-      var invView = GameObject.FindGameObjectWithTag(InventoryViewTag).GetComponent<Inventory>();
+      var invView = FindObjectOfType<Inventory>();
       invView.AddItem(item.Name, item.Count);
     }
   }
@@ -187,5 +187,10 @@ public class GameMechanic : MonoBehaviour
   public static void AddLog(string message)
   {
     GameObject.Find("DebugConsole").GetComponent<UnityEngine.UI.Text>().text += message + "\n";
+  }
+
+  public void Back()
+  {
+    Debug.Log("Back to previous scene");
   }
 }

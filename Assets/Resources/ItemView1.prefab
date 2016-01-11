@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11457882}
   - 114: {fileID: 11403966}
   m_Layer: 0
-  m_Name: ItemView
+  m_Name: ItemView1
   m_TagString: InventoryObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

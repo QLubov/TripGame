@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Timers;
 
 public class Inventory : MonoBehaviour
 {
+  public double HideInterval = 10.0;
+  Timer hideTimer;
+
   public void AddItem(string name, uint count = 1)
   {
     var counter = FindItemCounter(name);
@@ -69,27 +73,42 @@ public class Inventory : MonoBehaviour
     if (item != null)
     {
       if (all)
-        Destroy(item);
+        DestroyImmediate(item);
       else
       {
         var counter = item.GetComponent<ItemCounter>();
         if (counter.Count > 1)
           counter.Count--;
         else
-          Destroy(item);
+          DestroyImmediate(item);
       }
+      AlignItems();
     }      
   }
   
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+	void Start ()
   {
-    AlignItems();
+    InitHideTimer();
+  }
+
+  private void InitHideTimer()
+  {
+    hideTimer = new Timer(HideInterval * 1000.0);
+    hideTimer.Enabled = true;
+    hideTimer.Elapsed += HideTimer_Elapsed;
+  }
+
+  private void HideTimer_Elapsed(object sender, ElapsedEventArgs e)
+  {
+    Hide();
+  }
+
+  // Update is called once per frame
+  void Update ()
+  {
+    //AlignItems();
+
   }
 
   private void AlignItems()
@@ -103,9 +122,21 @@ public class Inventory : MonoBehaviour
       else if (index >= 0)
       {
         //set new parent for item. Item == GetChild(0)
-        transform.GetChild(index).GetComponent<Slot>().SetItem(currentSlot.transform.GetChild(0).gameObject);
+        transform.GetChild(index).GetComponent<Slot>().SetItem(currentSlot.GetItem());
         i = index;
       }
     }
+  }
+
+  public void Show()
+  {
+    Debug.Log("Show inventory");
+    hideTimer.Start();
+  }
+
+  public void Hide()
+  {
+    Debug.Log("Hide inventory");
+    hideTimer.Stop();
   }
 }
