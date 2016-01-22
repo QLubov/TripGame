@@ -30,6 +30,7 @@ GameObject:
   - 222: {fileID: 22246280}
   - 114: {fileID: 11475016}
   - 114: {fileID: 11481608}
+  - 225: {fileID: 22567722}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -139,6 +140,7 @@ GameObject:
   - 222: {fileID: 22294712}
   - 114: {fileID: 11422840}
   - 114: {fileID: 11470712}
+  - 225: {fileID: 22501674}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -211,6 +213,7 @@ GameObject:
   - 222: {fileID: 22221566}
   - 114: {fileID: 11448368}
   - 114: {fileID: 11421886}
+  - 225: {fileID: 22550788}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -229,6 +232,7 @@ GameObject:
   - 222: {fileID: 22265026}
   - 114: {fileID: 11407394}
   - 114: {fileID: 11454634}
+  - 225: {fileID: 22575532}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -284,6 +288,7 @@ GameObject:
   - 222: {fileID: 22276538}
   - 114: {fileID: 11461662}
   - 114: {fileID: 11418368}
+  - 225: {fileID: 22504594}
   m_Layer: 0
   m_Name: CountLabel
   m_TagString: Untagged
@@ -1284,6 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d23c8f82ba96e49b2430c638189bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HideInterval: 10
 --- !u!114 &11498278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1777,6 +1783,61 @@ RectTransform:
   m_AnchoredPosition: {x: 80.7800293, y: -421}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: .5, y: .5}
+--- !u!225 &22501674
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130922}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!225 &22504594
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180836}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!225 &22550788
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160800}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!225 &22567722
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111146}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!225 &22575532
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168424}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
   ItemCounter FindItemCounter(string name)
   {
     var item = FindItem(name);
-    return item == null ? null : item.GetComponent<ItemCounter>(); 
+    return item == null ? null : item.GetComponent<ItemCounter>();
   }
 
   GameObject FindItem(string name)
@@ -83,11 +83,11 @@ public class Inventory : MonoBehaviour
           DestroyImmediate(item);
       }
       AlignItems();
-    }      
+    }
   }
-  
-	// Use this for initialization
-	void Start ()
+
+  // Use this for initialization
+  void Start()
   {
     InitHideTimer();
   }
@@ -105,7 +105,7 @@ public class Inventory : MonoBehaviour
   }
 
   // Update is called once per frame
-  void Update ()
+  void Update()
   {
     //AlignItems();
 
@@ -130,13 +130,11 @@ public class Inventory : MonoBehaviour
 
   public void Show()
   {
-    Debug.Log("Show inventory");
     hideTimer.Start();
   }
 
   public void Hide()
   {
-    Debug.Log("Hide inventory");
     hideTimer.Stop();
   }
 }

@@ -21,6 +21,15 @@ public class GameMechanic : MonoBehaviour
 
       AddLog(path);
 
+      using (var fs = new FileStream(@GetInventoryPath(), FileMode.OpenOrCreate))
+      {
+        AddLog("Loading inventory... ");
+
+        ClearObjectsByTag(InventoryObjectTag);
+        LoadInventory(fs);
+
+        AddLog("Inventory successfully loaded");
+      }
       if (!File.Exists(@path))
       {
         AddLog("Scene file doesn't exist");
@@ -35,20 +44,16 @@ public class GameMechanic : MonoBehaviour
 
         AddLog(string.Format("Scene {0} successfully loaded ", path));
       }
-      using (var fs = new FileStream(@GetInventoryPath(), FileMode.OpenOrCreate))
-      {
-        AddLog("Loading inventory... ");
-
-        ClearObjectsByTag(InventoryObjectTag);
-        LoadInventory(fs);
-
-        AddLog("Inventory successfully loaded");
-      }
     }
     catch (System.Exception e)
     {
       AddLog(e.Message);
     }
+  }
+
+  void OnApplicationQuit()
+  {
+    OnSave();
   }
 
   private static string GetScenePath()
@@ -108,13 +113,15 @@ public class GameMechanic : MonoBehaviour
     foreach (var so in scene.SceneObjects)
     {
       var pref = Resources.Load<GameObject>(so.Name);
-      if (pref != null)
+      if (pref == null)
       {
-        var sceneObject = Instantiate<GameObject>(pref);
-        sceneObject.transform.SetParent(GameObject.FindGameObjectWithTag(GameSceneTag).transform, false);
-        sceneObject.transform.position = so.Position;
-        sceneObject.name = so.Name;
+        Debug.LogError(string.Format("Prefab {0} not found", so.Name));
       }
+
+      var sceneObject = Instantiate<GameObject>(pref);
+      sceneObject.transform.SetParent(GameObject.FindGameObjectWithTag(GameSceneTag).transform, false);
+      sceneObject.transform.position = so.Position;
+      sceneObject.name = so.Name;
     }
   }
 
@@ -187,10 +194,5 @@ public class GameMechanic : MonoBehaviour
   public static void AddLog(string message)
   {
     GameObject.Find("DebugConsole").GetComponent<UnityEngine.UI.Text>().text += message + "\n";
-  }
-
-  public void Back()
-  {
-    Debug.Log("Back to previous scene");
   }
 }

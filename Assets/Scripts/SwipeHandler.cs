@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class SwipeHandler : MonoBehaviour
 {
@@ -15,10 +15,15 @@ public class SwipeHandler : MonoBehaviour
     Enabled = true;
   }
 
+  public string ParentScreen;
+
   public void Update()
   {
     if (!Enabled)
+    {
+      OldPosition = Input.mousePosition;
       return;
+    }
 
     Vector2 movement = GetMovement();
     if (movement.magnitude >= SwipeLength)
@@ -29,7 +34,6 @@ public class SwipeHandler : MonoBehaviour
       {
         if (Mathf.Abs(movement.x) <= Aberration)
         {
-          Debug.Log("Swipe Up");
           FindObjectOfType<Inventory>().Show();
           return;
         }
@@ -39,8 +43,15 @@ public class SwipeHandler : MonoBehaviour
       {
         if (Mathf.Abs(movement.y) <= Aberration)
         {
-          Debug.Log("Swipe left");
-          FindObjectOfType<GameMechanic>().Back();
+          if(ParentScreen == "")
+          {
+            Debug.Log("Parent screen is not set for " + Application.loadedLevelName);
+            return;
+          }
+
+          FindObjectOfType<GameMechanic>().OnSave();
+          Application.LoadLevel(ParentScreen);
+          
           return;
 
         }

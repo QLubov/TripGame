@@ -18,10 +18,10 @@ public class Logger : MonoBehaviour {
 
   void Awake()
   {
-    Application.logMessageReceivedThreaded += HandleLogMessage;
+   /* Application.logMessageReceivedThreaded += HandleLogMessage;
     string logPath = GetLogFilePath();
     logFile = new StreamWriter(logPath, true);
-    logFile.AutoFlush = true;
+    logFile.AutoFlush = true;*/
   }
 
   public void HandleLogMessage(string logString, string stackTrace, LogType type)
@@ -47,7 +47,7 @@ public class Logger : MonoBehaviour {
 
   void OnApplicationQuit()
   {
-    logFile.Close();
+    //logFile.Close();
   }
 
   string GetTime()
