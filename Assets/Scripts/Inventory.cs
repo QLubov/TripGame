@@ -137,4 +137,9 @@ public class Inventory : MonoBehaviour
   {
     hideTimer.Stop();
   }
+
+  void OnDestroy()
+  {
+    hideTimer.Elapsed -= HideTimer_Elapsed;
+  }
 }
